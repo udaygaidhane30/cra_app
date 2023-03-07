@@ -2,6 +2,8 @@ import 'package:cra_complaints/Components/loginTextField.dart';
 import 'package:cra_complaints/Components/my_button.dart';
 import 'package:cra_complaints/Components/registerTextFields.dart';
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icon.dart';
+import 'package:line_icons/line_icons.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
@@ -14,11 +16,11 @@ class RegisterPage extends StatelessWidget {
           child: SingleChildScrollView(
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               child: Column(
-                children: const [
-                  SizedBox(
+                children: [
+                  const SizedBox(
                     height: 50,
                   ),
-                  Text(
+                  const Text(
                     'Register',
                     style: TextStyle(
                       fontSize: 25,
@@ -26,26 +28,38 @@ class RegisterPage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  Fname(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Lname(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  EmailField(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  PassField(),
-                  SizedBox(
+                  GestureDetector(
+                      child: CircleAvatar(
+                    radius: 80,
+                    backgroundColor: Colors.deepPurple,
+                    child: CircleAvatar(
+                      radius: 75,
+                      backgroundImage: AssetImage('assets/default_pic.jpg'),
+                    ),
+                  )),
+                  const SizedBox(
                     height: 20,
                   ),
-                  SignUpButton(),
+                  const Fname(),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Lname(),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const EmailField(),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const PassField(),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const SignUpButton(),
                 ],
               )),
         ));
