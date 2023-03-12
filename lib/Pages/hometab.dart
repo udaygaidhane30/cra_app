@@ -10,13 +10,22 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
-  final List _complaints = [
-    'comp1',
+  final List _complaintsT = [
+    'Fan not Working',
     'comp2',
     'comp3',
     'comp4',
     'comp5',
   ];
+
+  final List _complaintsD = [
+    'Fan of room 822 is running slow and regulator not working properly',
+    'comp2',
+    'comp3',
+    'comp4',
+    'comp5',
+  ];
+
   Future<void> _handleRefresh() async {
     return await Future.delayed(const Duration(seconds: 1));
   }
@@ -32,10 +41,11 @@ class _HomeTabState extends State<HomeTab> {
       springAnimationDurationInMilliseconds: 700,
       child: ListView.builder(
           physics: BouncingScrollPhysics(),
-          itemCount: _complaints.length,
+          itemCount: _complaintsT.length,
           itemBuilder: ((context, index) {
             return CompTile(
-              textChild: _complaints[index],
+              cTitle: _complaintsT[index],
+              description: _complaintsD[index],
             );
           })),
     );

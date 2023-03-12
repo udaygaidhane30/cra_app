@@ -10,7 +10,13 @@ class MyCompTab extends StatefulWidget {
 }
 
 class _MyCompTabState extends State<MyCompTab> {
-  final List _complaints = [
+  final List _complaintsT = [
+    'comp1',
+    'comp2',
+    'comp3',
+    'comp4',
+  ];
+  final List _complaintsD = [
     'comp1',
     'comp2',
     'comp3',
@@ -31,10 +37,11 @@ class _MyCompTabState extends State<MyCompTab> {
       springAnimationDurationInMilliseconds: 700,
       child: ListView.builder(
           physics: const BouncingScrollPhysics(),
-          itemCount: _complaints.length,
+          itemCount: _complaintsT.length,
           itemBuilder: ((context, index) {
             return CompTile(
-              textChild: _complaints[index],
+              cTitle: _complaintsT[index],
+              description: _complaintsD[index],
             );
           })),
     );

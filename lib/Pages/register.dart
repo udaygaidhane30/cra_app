@@ -1,9 +1,6 @@
-import 'package:cra_complaints/Components/loginTextField.dart';
 import 'package:cra_complaints/Components/my_button.dart';
 import 'package:cra_complaints/Components/registerTextFields.dart';
 import 'package:flutter/material.dart';
-import 'package:line_icons/line_icon.dart';
-import 'package:line_icons/line_icons.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
@@ -32,7 +29,7 @@ class RegisterPage extends StatelessWidget {
                     height: 20,
                   ),
                   GestureDetector(
-                      child: CircleAvatar(
+                      child: const CircleAvatar(
                     radius: 80,
                     backgroundColor: Colors.deepPurple,
                     child: CircleAvatar(
