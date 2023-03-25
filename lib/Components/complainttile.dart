@@ -2,10 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 
 class CompTile extends StatefulWidget {
-  @override
-  final String cTitle;
-  final String description;
-  CompTile({super.key, required this.cTitle, required this.description});
+  String cTitle;
+  String description;
+  int likeCount;
+  String status;
+  CompTile({
+    super.key,
+    required this.cTitle,
+    required this.description,
+    required this.likeCount,
+    required this.status,
+  });
 
   @override
   State<CompTile> createState() => _CompTileState();
@@ -43,22 +50,23 @@ class _CompTileState extends State<CompTile> {
                 LikeButton(
                   size: 40,
                   bubblesColor: BubblesColor(
-                    dotPrimaryColor: Color(0xFFC3B1E1),
+                    dotPrimaryColor: const Color(0xFFC3B1E1),
                     dotSecondaryColor: Colors.purple.shade700,
                   ),
                   circleColor: CircleColor(
-                      start: Color(0xFFC3B1E1), end: Colors.purple.shade700),
+                      start: const Color(0xFFC3B1E1),
+                      end: Colors.purple.shade700),
                   likeBuilder: (bool isLiked) {
                     return Icon(
                       Icons.arrow_circle_up_rounded,
-                      color: isLiked ? Color(0xFF645CBB) : Colors.grey,
+                      color: isLiked ? const Color(0xFF645CBB) : Colors.grey,
                       size: 40,
                     );
                   },
                   onTap: onLikeButtonTapped,
-                  likeCount: 665,
+                  likeCount: widget.likeCount,
                   countBuilder: (count, isLiked, text) {
-                    var color = isLiked ? Color(0xFF645CBB) : Colors.grey;
+                    var color = isLiked ? const Color(0xFF645CBB) : Colors.grey;
                     Widget result;
                     if (count == 0) {
                       result = Text(
@@ -72,11 +80,12 @@ class _CompTileState extends State<CompTile> {
                       );
                       return result;
                     }
+                    return null;
                   },
                 ),
                 Text(
-                  'Status',
-                  style: TextStyle(color: Colors.grey),
+                  widget.status,
+                  style: const TextStyle(color: Colors.grey),
                 ),
               ],
             ),
@@ -93,7 +102,8 @@ class _CompTileState extends State<CompTile> {
 class ContainerCard extends StatefulWidget {
   final String cTitle;
   final String description;
-  ContainerCard({super.key, required this.cTitle, required this.description});
+  const ContainerCard(
+      {super.key, required this.cTitle, required this.description});
 
   @override
   State<ContainerCard> createState() => _ContainerCardState();
@@ -109,8 +119,9 @@ class _ContainerCardState extends State<ContainerCard> {
         child: Container(
             alignment: Alignment.centerLeft,
             height: 200,
-            decoration: BoxDecoration(color: Colors.grey.shade200, boxShadow: [
-              const BoxShadow(
+            decoration:
+                BoxDecoration(color: Colors.grey.shade200, boxShadow: const [
+              BoxShadow(
                   color: Colors.blue,
                   blurRadius: 10.0,
                   spreadRadius: 2.0,
@@ -151,8 +162,8 @@ class _ContainerCardState extends State<ContainerCard> {
                   padding: const EdgeInsets.all(12.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const LikeButton(),
+                    children: const [
+                      LikeButton(),
                     ],
                   ),
                 ),

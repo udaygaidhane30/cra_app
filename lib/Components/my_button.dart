@@ -33,6 +33,7 @@ class _LoginButtonState extends State<LoginButton> {
         password: widget.passwordController.text,
       );
       // pop the loading circle
+      // ignore: use_build_context_synchronously
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       // pop the loading circle

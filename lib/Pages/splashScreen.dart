@@ -1,5 +1,4 @@
-import 'dart:html';
-
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
@@ -13,7 +12,7 @@ class SplashScreen extends StatelessWidget {
       body: Center(
           child: Column(
         children: [
-          Text(
+          const Text(
             'CRA',
             style: TextStyle(color: Colors.white),
           ),

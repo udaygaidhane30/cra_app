@@ -12,7 +12,7 @@ class _ProfileTabState extends State<ProfileTab> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(25),
+      padding: const EdgeInsets.all(25),
       child: ListView(
         children: [
           GestureDetector(
@@ -22,18 +22,18 @@ class _ProfileTabState extends State<ProfileTab> {
               backgroundColor: Colors.grey.shade400,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          Text(
+          const Text(
             '@username',
             textAlign: TextAlign.center,
           ),
-          SizedBox(
+          const SizedBox(
             height: 70,
           ),
           Pattributes('Name'),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Pattributes('Password'),

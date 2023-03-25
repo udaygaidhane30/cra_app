@@ -2,7 +2,6 @@ import 'package:cra_complaints/Components/loginTextField.dart';
 import 'package:cra_complaints/Components/my_button.dart';
 import 'package:cra_complaints/Pages/register.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -12,6 +11,7 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
+  // ignore: prefer_typing_uninitialized_variables
   var _isObscured;
 
   @override

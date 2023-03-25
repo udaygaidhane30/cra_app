@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 class UserName extends StatelessWidget {
+  // ignore: prefer_typing_uninitialized_variables
   final controller;
   const UserName({super.key, required this.controller});
 

@@ -4,7 +4,6 @@ import 'package:cra_complaints/Pages/hometab.dart';
 import 'package:cra_complaints/Pages/mycomplaintspage.dart';
 import 'package:cra_complaints/Pages/profilepage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class Page1 extends StatefulWidget {

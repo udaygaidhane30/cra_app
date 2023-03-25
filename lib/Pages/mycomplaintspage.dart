@@ -42,6 +42,8 @@ class _MyCompTabState extends State<MyCompTab> {
             return CompTile(
               cTitle: _complaintsT[index],
               description: _complaintsD[index],
+              status: "Pending",
+              likeCount: 552,
             );
           })),
     );

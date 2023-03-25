@@ -18,10 +18,10 @@ class _DrawerAppState extends State<DrawerApp> {
       ScreenHiddenDrawer(
           ItemHiddenMenu(
             name: 'Home Page',
-            baseStyle: TextStyle(),
-            selectedStyle: TextStyle(),
+            baseStyle: const TextStyle(),
+            selectedStyle: const TextStyle(),
           ),
-          WelcomePage())
+          const WelcomePage())
     ];
   }
 

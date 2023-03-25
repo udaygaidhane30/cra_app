@@ -27,7 +27,6 @@ class EmailField extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }
 

@@ -131,32 +131,32 @@ class _ComplaintPageState extends State<ComplaintPage> {
           //const CameraPick(),
 
           //const GalleryPick(),
-          Center(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              decoration: BoxDecoration(
-                border: Border.all(width: 1, color: Colors.grey.shade400),
-                borderRadius: BorderRadius.circular(3),
-              ),
-              child: Row(children: const [
-                Text(
-                  'Select Image : ',
-                  style: TextStyle(fontWeight: FontWeight.w400),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                CameraPick(),
-                SizedBox(
-                  width: 10,
-                ),
-                GalleryPick(),
-              ]),
-            ),
-          ),
-          const SizedBox(
-            height: 50,
-          ),
+          // Center(
+          //   child: Container(
+          //     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          //     decoration: BoxDecoration(
+          //       border: Border.all(width: 1, color: Colors.grey.shade400),
+          //       borderRadius: BorderRadius.circular(3),
+          //     ),
+          //     child: Row(children: const [
+          //       Text(
+          //         'Select Image : ',
+          //         style: TextStyle(fontWeight: FontWeight.w400),
+          //       ),
+          //       SizedBox(
+          //         width: 10,
+          //       ),
+          //       CameraPick(),
+          //       SizedBox(
+          //         width: 10,
+          //       ),
+          //       GalleryPick(),
+          //     ]),
+          //   ),
+          // ),
+          // const SizedBox(
+          //   height: 50,
+          // ),
           SlideAction(
             borderRadius: 12,
             innerColor: const Color(0xFF645CBB),
