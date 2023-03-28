@@ -17,31 +17,40 @@ class _HomeTabState extends State<HomeTab> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-        stream: FirebaseFirestore.instance.collection("complaints").snapshots(),
-        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemCount: snapshot.data?.docs.length,
-              itemBuilder: (context, index) {
-                return CompTile(
-                  cTitle: snapshot.data?.docs[index]['title'],
-                  description: snapshot.data?.docs[index]['description'],
-                  likeCount: snapshot.data?.docs[index]['upvote'],
-                  status: snapshot.data?.docs[index]["status"],
-                );
-              },
-            );
-          } else if (snapshot.hasError) {
-            return Center(
-              child: Text(snapshot.error.toString()),
-            );
-          } else {
-            return const Center(
-              child: Text("No -tt- Data"),
-            );
-          }
-        });
+    return LiquidPullToRefresh(
+      onRefresh: _handleRefresh,
+      color: Colors.deepPurple,
+      backgroundColor: Colors.deepPurple[70],
+      height: 200,
+      animSpeedFactor: 1.5,
+      springAnimationDurationInMilliseconds: 700,
+      child: StreamBuilder(
+          stream:
+              FirebaseFirestore.instance.collection("complaints").snapshots(),
+          builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                itemCount: snapshot.data?.docs.length,
+                itemBuilder: (context, index) {
+                  return CompTile(
+                    cTitle: snapshot.data?.docs[index]['title'],
+                    description: snapshot.data?.docs[index]['description'],
+                    likeCount: snapshot.data?.docs[index]['upvote'],
+                    status: snapshot.data?.docs[index]["status"],
+                  );
+                },
+              );
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text(snapshot.error.toString()),
+              );
+            } else {
+              return const Center(
+                child: Text("No -tt- Data"),
+              );
+            }
+          }),
+    );
   }
 }
