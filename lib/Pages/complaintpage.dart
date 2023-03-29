@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:slide_to_act/slide_to_act.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 
 class ComplaintPage extends StatefulWidget {
@@ -19,23 +20,61 @@ class _ComplaintPageState extends State<ComplaintPage> {
   ];
   var dName = 'Hostel';
 
-  addToFireStore(complaint) {
-    FirebaseFirestore.instance.collection("complaints").add(complaint);
+  Future<void> addToFireStore(complaint, uid) async {
+    try {
+      FirebaseFirestore.instance
+          .collection("complaints")
+          .doc(uid)
+          .set(complaint);
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(
+          /// need to set following properties for best effect of awesome_snackbar_content
+          elevation: 0,
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.transparent,
+          content: AwesomeSnackbarContent(
+            title: 'Great!',
+            message: "Let's work on your complaint..",
+
+            /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
+            contentType: ContentType.success,
+          ),
+        ));
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(
+          /// need to set following properties for best effect of awesome_snackbar_content
+          elevation: 0,
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.transparent,
+          content: AwesomeSnackbarContent(
+            title: 'On Snap!',
+            message: "Failed to register your complaint!!",
+
+            /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
+            contentType: ContentType.failure,
+          ),
+        ));
+    }
   }
 
   addComplaint(complaintTitle, describe, suggest, dname) {
+    var uid = FirebaseFirestore.instance.collection("complaints").doc().id;
     var complaintData = {
       "department": dname,
       "description": describe,
-      "idnum": "bt20cse041@iiitn.ac.in",
+      "idnum": FirebaseAuth.instance.currentUser?.email,
       "publisher": "Jay Shah",
       "status": "Pending",
       "suggestion": suggest,
       "time": DateTime.now(),
       "title": complaintTitle,
-      "upvote": 1,
+      "upvote": 0,
+      "uid": uid,
     };
-    addToFireStore(complaintData);
+    addToFireStore(complaintData, uid);
   }
 
   final titleController = TextEditingController();

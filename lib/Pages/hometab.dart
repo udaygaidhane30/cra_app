@@ -30,7 +30,7 @@ class _HomeTabState extends State<HomeTab> {
           builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasData) {
               return ListView.builder(
-                physics: const BouncingScrollPhysics(),
+                physics: const AlwaysScrollableScrollPhysics(),
                 itemCount: snapshot.data?.docs.length,
                 itemBuilder: (context, index) {
                   return CompTile(
@@ -38,6 +38,7 @@ class _HomeTabState extends State<HomeTab> {
                     description: snapshot.data?.docs[index]['description'],
                     likeCount: snapshot.data?.docs[index]['upvote'],
                     status: snapshot.data?.docs[index]["status"],
+                    uid: snapshot.data?.docs[index]["uid"],
                   );
                 },
               );

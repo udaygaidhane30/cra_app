@@ -6,12 +6,14 @@ class CompTile extends StatefulWidget {
   String description;
   int likeCount;
   String status;
+  String uid;
   CompTile({
     super.key,
     required this.cTitle,
     required this.description,
     required this.likeCount,
     required this.status,
+    required this.uid,
   });
 
   @override
