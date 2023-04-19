@@ -1,4 +1,5 @@
 import 'package:cra_complaints/Components/bottom_navbar.dart';
+import 'package:cra_complaints/Components/drawer.dart';
 import 'package:cra_complaints/Pages/complaintpage.dart';
 import 'package:cra_complaints/Pages/hometab.dart';
 import 'package:cra_complaints/Pages/mycomplaintspage.dart';
@@ -35,8 +36,8 @@ class _Page1State extends State<Page1> {
       appBar: AppBar(
         title: const Text('A P P B A R'),
         backgroundColor: Colors.deepPurple,
-        leading:
-            IconButton(onPressed: () {}, icon: const Icon(Icons.menu_rounded)),
+        // leading:
+        //     IconButton(onPressed: () {}, icon: const Icon(Icons.menu_rounded)),
         centerTitle: true,
         elevation: 4,
         actions: [
@@ -47,6 +48,7 @@ class _Page1State extends State<Page1> {
               icon: const Icon(Icons.logout))
         ],
       ),
+      drawer: MyDrawer(),
       bottomNavigationBar: BnavBar(callback: callback),
       body: _pagesToShow[selectedIndex],
     );

@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class CompTile extends StatefulWidget {
   String cTitle;
@@ -7,6 +9,7 @@ class CompTile extends StatefulWidget {
   int likeCount;
   String status;
   String uid;
+
   CompTile({
     super.key,
     required this.cTitle,
@@ -21,14 +24,53 @@ class CompTile extends StatefulWidget {
 }
 
 class _CompTileState extends State<CompTile> {
+  Future<int> get upvotes async {
+    await FirebaseFirestore.instance
+        .collection('complaints')
+        .doc(widget.uid)
+        .get()
+        .then((snapshot) {
+      if (snapshot.exists) {
+        return snapshot.data()!['upvote'];
+      }
+    });
+    return 1;
+  }
+
+  Future<bool> sendRequest() async {
+    var entryInstance =
+        FirebaseFirestore.instance.collection('complaints').doc(widget.uid);
+
+    var upvoteCheck = FirebaseFirestore.instance
+        .collection('upvotes')
+        .doc(FirebaseAuth.instance.currentUser?.email);
+    var upvoteData = await upvoteCheck.get();
+
+    if (upvoteData.exists) {
+      Map<String, dynamic> data = upvoteData.data()!;
+      var upvote = data['upvotes'];
+      if (upvote.contains(widget.uid)) {
+        return false;
+      } else {
+        await upvoteCheck.update({
+          upvotes: [upvoteData.data()!['upvotes'], widget.uid]
+        });
+        await entryInstance.update({upvote: widget.likeCount + 1});
+        widget.likeCount += 1;
+        return true;
+      }
+    }
+    return true ;
+  }
+
   Future<bool> onLikeButtonTapped(bool isLiked) async {
     /// send your request here
     // final bool success= await sendRequest();
 
     /// if failed, you can do nothing
     // return success? !isLiked:isLiked;
-
-    return !isLiked;
+    final bool success = await sendRequest();
+    return success ? !isLiked : isLiked;
   }
 
   @override

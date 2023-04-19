@@ -2,6 +2,7 @@ import 'package:cra_complaints/Components/complainttile.dart';
 import 'package:flutter/material.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
@@ -47,8 +48,9 @@ class _HomeTabState extends State<HomeTab> {
                 child: Text(snapshot.error.toString()),
               );
             } else {
-              return const Center(
-                child: Text("No -tt- Data"),
+              return Center(
+                child: LoadingAnimationWidget.inkDrop(
+                    color: Colors.white, size: 30),
               );
             }
           }),
